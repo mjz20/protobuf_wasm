@@ -21,7 +21,7 @@ What is the change to make it build?
 changes
 - WORKSPACE
 - BUILD.bazel
-
+the commit: https://github.com/mjz20/protobuf_wasm/commit/aa3ac75474327a33d0af10e6b6799c0e3b4b4b56
 
 
 
