@@ -7,6 +7,11 @@ load("@rules_java//java:defs.bzl", "java_lite_proto_library", "java_proto_librar
 load("//build_defs:cpp_opts.bzl", "COPTS", "LINK_OPTS", "PROTOC_LINK_OPTS")
 load(":protobuf.bzl", "internal_objc_proto_library", "internal_php_proto_library", "internal_py_proto_library", "internal_ruby_proto_library")
 
+#add by mjz20
+load("@emsdk//emscripten_toolchain:wasm_rules.bzl", "wasm_cc_binary")
+#end
+
+
 licenses(["notice"])
 
 exports_files(["LICENSE"])
@@ -171,6 +176,13 @@ cc_binary(
     visibility = ["//visibility:public"],
     deps = ["//src/google/protobuf/compiler:protoc_lib"],
 )
+
+#add by mjz20
+wasm_cc_binary(
+    name = "proto-wasm",
+    cc_target = "//:protoc",
+)
+#end add by mjz20
 
 ################################################################################
 # C++ runtime

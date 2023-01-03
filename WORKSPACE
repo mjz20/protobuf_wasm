@@ -95,3 +95,22 @@ bind(
     name = "python_headers",
     actual = "@system_python//:python_headers",
 )
+
+
+#add by mjz20
+http_archive(
+    name = "emsdk",
+    sha256 = "b8270749b99d8d14922d1831b93781a5560fba6f7bce65cd477fc1b6aa262535",
+    strip_prefix = "emsdk-3.1.28/bazel",
+    url = "https://github.com/emscripten-core/emsdk/archive/refs/tags/3.1.28.tar.gz",
+)
+
+load("@emsdk//:deps.bzl", emsdk_deps = "deps")
+emsdk_deps()
+
+load("@emsdk//:emscripten_deps.bzl", emsdk_emscripten_deps = "emscripten_deps")
+emsdk_emscripten_deps(emscripten_version = "3.1.28")
+
+load("@emsdk//:toolchains.bzl", "register_emscripten_toolchains")
+register_emscripten_toolchains()
+#end
