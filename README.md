@@ -1,4 +1,5 @@
-How to build:
+How to build
+------------
 
 bazel build proto-wasm --copt="-Wno-deprecated-builtins" --copt="-Wno-array-parameter" --copt="-Wno-deprecated-non-prototype" --copt="-pthread" --linkopt="-pthread" --sandbox_debug --verbose_failures
 
@@ -6,6 +7,7 @@ Note: due to emscripten toolchain enabled -Werror -Wall:
 https://github.com/emscripten-core/emsdk/blob/main/bazel/emscripten_toolchain/toolchain.bzl#L433
 
 so you will get following error:
+
 '''
 external/com_google_absl/absl/hash/internal/low_level_hash.cc:43:38: error: argument 'salt' of type 'const uint64_t[]' (aka 'const unsigned long long[]') with mismatched bound [-Werror,-Warray-parameter]
 '''
@@ -14,14 +16,18 @@ you will need to disable the feature: wasm_warnings_as_errors by go to the sandb
 
 
 How to run?
+-----------
 node --experimental-wasm-threads --experimental-wasm-bulk-memory bazel-bin/proto-wasm/protoc.js
 
 What is the change to make it build?
 
+
 changes
+-------
 - WORKSPACE
 - BUILD.bazel
-the commit: https://github.com/mjz20/protobuf_wasm/commit/aa3ac75474327a33d0af10e6b6799c0e3b4b4b56
+
+the [commit](https://github.com/mjz20/protobuf_wasm/commit/aa3ac75474327a33d0af10e6b6799c0e3b4b4b56)
 
 
 
